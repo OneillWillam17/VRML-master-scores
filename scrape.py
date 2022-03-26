@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 class Scrape:
 
     def __init__(self):
-        """on init, save URL of VRML to be scraped and create empty list for match info """
+        """save URL of VRML to be scraped and create empty list for match info """
         self.URL = 'https://vrmasterleague.com/EchoArena/Matches/vjOaUp4JlmG7C2Cl_fVZmQ2'
         self.info = []
 
@@ -21,6 +21,7 @@ class Scrape:
 
         # Loops over matches in table, pulls names of teams and score from past matches. Saves them to self.info
         for match in matches:
+            
             # finds the home team's name
             home_team = match.find('td', class_='home_team_cell')
             home_team_name = home_team.find('span', class_='team_name')
@@ -39,6 +40,7 @@ class Scrape:
             # attempts to save score to plain text
             try:
                 plain_text_score = score.text
+                
             except AttributeError:
                 plain_text_score = 'Scores not submitted yet'
 
